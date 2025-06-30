@@ -35,7 +35,12 @@
       ? `.${el.className.toString().trim().replace(/\s+/g, ' .')}`
       : '[no class]';
 
-    tooltip.textContent = `classes: ${classList}\ntag: ${tag}`;
+    const parentTag = el.parentElement
+      ? el.parentElement.tagName.toLowerCase()
+      : '[no parent]';
+
+    // tooltip.textContent = `classes: ${classList}\ntag: ${tag}`;
+    tooltip.textContent = `classes: ${classList}\ntag: ${tag}\nparent-tag: ${parentTag}`;
     tooltip.style.top = `${e.clientY + 15}px`;
     tooltip.style.left = `${e.clientX + 15}px`;
     tooltip.style.opacity = '1';
