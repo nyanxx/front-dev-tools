@@ -30,17 +30,20 @@
     const el = document.elementFromPoint(e.clientX, e.clientY);
     if (!el) return;
 
+    // logic 
     const tag = el.tagName.toLowerCase();
+    const tagId = el.id ? ` #${el.id}` : '';
     const classList = el.className
       ? `.${el.className.toString().trim().replace(/\s+/g, ' .')}`
       : '[no class]';
 
-    const parentTag = el.parentElement
-      ? el.parentElement.tagName.toLowerCase()
+    const parent = el.parentElement;
+    const parentTag = parent
+      ? parent.tagName.toLowerCase() + (parent.id ? ` #${parent.id}` : '')
       : '[no parent]';
 
     // tooltip.textContent = `classes: ${classList}\ntag: ${tag}`;
-    tooltip.textContent = `classes: ${classList}\ntag: ${tag}\nparent-tag: ${parentTag}`;
+    tooltip.textContent = `classes: ${classList}\ntag: ${tag}${tagId}\nparent: ${parentTag}`;
     tooltip.style.top = `${e.clientY + 15}px`;
     tooltip.style.left = `${e.clientX + 15}px`;
     tooltip.style.opacity = '1';
